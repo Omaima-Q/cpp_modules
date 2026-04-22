@@ -6,7 +6,7 @@ to Object-Oriented Programming (C++).
 
 ## 📂 Project Overview
 
-| Exercise | Name | Description | Key Concepts |
+| Cpp00 | Name | Description | Key Concepts |
 | :--- | :--- | :--- | :--- |
 | **ex00** | Megaphone | Basic I/O and strings | `std::cout`, `std::string` |
 | **ex01** | My Awesome PhoneBook | First class implementation | Class nesting, access specifiers |
