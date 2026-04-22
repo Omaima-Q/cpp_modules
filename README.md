@@ -11,3 +11,5 @@ to Object-Oriented Programming (C++).
 | **ex00** | Megaphone | Basic I/O and strings | `std::cout`, `std::string` |
 | **ex01** | My Awesome PhoneBook | First class implementation | Class nesting, access specifiers |
 | **ex02** | The Job of Your Dreams | Log parsing | Static members, timestamps |
+
+## Additional Info
