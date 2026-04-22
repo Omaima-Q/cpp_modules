@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
     for (int i = 1; i < argc; i++) // loop through each string 
     {
-        std::string s(argv[i]); // Initialize string from char*
+        std::string s(argv[i]); // Initialize string from char* , the 
         for (size_t j = 0; j < s.length(); j++) // loop through each character in each string 
         {
             std::cout << (char)std::toupper(s[j]);
