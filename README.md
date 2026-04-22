@@ -12,4 +12,4 @@ to Object-Oriented Programming (C++).
 | **ex01** | My Awesome PhoneBook | First class implementation | Class nesting, access specifiers |
 | **ex02** | The Job of Your Dreams | Log parsing | Static members, timestamps |
 
-## Additional Info
+## 🔸Additional Info
