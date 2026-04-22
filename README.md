@@ -12,7 +12,7 @@ to Object-Oriented Programming (C++).
 | **ex01** | My Awesome PhoneBook | First class implementation | Class nesting, access specifiers |
 | **ex02** | The Job of Your Dreams | Log parsing | Static members, timestamps |
 
-## 💡 Key Concept: `std::string`
+### 💡 Key Concept: `std::string`
 
 Why i used std::string in this module, we move away from C-style `char *` strings to `std::string`. This introduces several core OOP principles:
 
@@ -23,7 +23,7 @@ Why i used std::string in this module, we move away from C-style `char *` string
 
 ---
 
-## 🚀 How to Compile & Run
+### 🚀 How to Compile & Run
 
 Each exercise contains its own **Makefile**. To run the PhoneBook (ex01):
 
