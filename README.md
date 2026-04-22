@@ -14,7 +14,7 @@ to Object-Oriented Programming (C++).
 
 ### 💡 Key Concept: `std::string`
 
-Why i used std::string in this module, we move away from C-style `char *` strings to `std::string`. This introduces several core OOP principles:
+Why i used 'std::string' in this module, we move away from C-style `char *` strings to `std::string`. This introduces several core OOP principles:
 
 * **Encapsulation:** `std::string` is an object that packages both text data and management tools (like `.length()`) together.
 * **Auto-Memory Management:** The object handles its own memory allocation and deallocation dynamically, reducing leaks and buffer overflows.
