@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaimaqaroot <omaimaqaroot@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:59:34 by omaimaqaroo       #+#    #+#             */
-/*   Updated: 2025/12/19 21:00:09 by omaimaqaroo      ###   ########.fr       */
+/*   Updated: 2026/07/26 21:35:07 by omaimaqaroo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,23 @@ void PhoneBook::displayAllContacts() const {
     }
 }
 
-void PhoneBook::addContact() {
+void PhoneBook::addContact()
+{
+    // No-overwrite version: rejects new contacts once the phonebook is full,
+    // so the oldest contacts are never replaced.
+    // if (totalContacts >= 8)
+    // {
+    //     std::cout << "PhoneBook is full! Cannot add more contacts." << std::endl;
+    //     return;
+    // }
+    // currentIndex = totalContacts;
+
     std::string input;
-    
+
     std::cout << "Enter first name: ";
     std::getline(std::cin, input);
-    if (input.empty()) {
+    if (input.empty()) 
+    {
         std::cout << "Error: Field cannot be empty!" << std::endl;
         return;
     }
@@ -55,7 +66,8 @@ void PhoneBook::addContact() {
     
     std::cout << "Enter last name: ";
     std::getline(std::cin, input);
-    if (input.empty()) {
+    if (input.empty()) 
+    {
         std::cout << "Error: Field cannot be empty!" << std::endl;
         return;
     }
@@ -63,7 +75,8 @@ void PhoneBook::addContact() {
     
     std::cout << "Enter nickname: ";
     std::getline(std::cin, input);
-    if (input.empty()) {
+    if (input.empty()) 
+    {
         std::cout << "Error: Field cannot be empty!" << std::endl;
         return;
     }
@@ -71,7 +84,8 @@ void PhoneBook::addContact() {
     
     std::cout << "Enter phone number: ";
     std::getline(std::cin, input);
-    if (input.empty()) {
+    if (input.empty()) 
+    {
         std::cout << "Error: Field cannot be empty!" << std::endl;
         return;
     }
@@ -79,20 +93,28 @@ void PhoneBook::addContact() {
     
     std::cout << "Enter darkest secret: ";
     std::getline(std::cin, input);
-    if (input.empty()) {
+    if (input.empty()) 
+    {
         std::cout << "Error: Field cannot be empty!" << std::endl;
         return;
     }
     contacts[currentIndex].setDarkestSecret(input);
     
     std::cout << "Contact added successfully!" << std::endl;
-    
+
+    // Overwrite version (active): advances and wraps around every 8 slots,
+    // so a 9th contact overwrites the oldest one (a circular buffer).
     currentIndex = (currentIndex + 1) % 8;
     if (totalContacts < 8)
         totalContacts++;
+
+    // No-overwrite version: just count up, since currentIndex was already
+    // set to totalContacts above and never needs to wrap.
+    // totalContacts++;
 }
 
-void PhoneBook::searchContact() {
+void PhoneBook::searchContact() 
+{
     if (totalContacts == 0) {
         std::cout << "PhoneBook is empty!" << std::endl;
         return;
@@ -104,7 +126,8 @@ void PhoneBook::searchContact() {
     int index;
     std::cin >> index;
     
-    if (std::cin.fail()) {
+    if (std::cin.fail()) 
+    {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
         std::cout << "Invalid input!" << std::endl;
@@ -113,7 +136,8 @@ void PhoneBook::searchContact() {
     
     std::cin.ignore(10000, '\n');
     
-    if (index < 0 || index >= totalContacts) {
+    if (index < 0 || index >= totalContacts) 
+    {
         std::cout << "Invalid index!" << std::endl;
         return;
     }
