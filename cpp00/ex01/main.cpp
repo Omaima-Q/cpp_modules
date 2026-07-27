@@ -16,11 +16,15 @@
 int main() {
     PhoneBook phoneBook;
     std::string command;
-    
+
     while (true) {
         std::cout << "\nEnter command (ADD, SEARCH, EXIT): ";
         std::getline(std::cin, command);
         
+        if (std::cin.eof()) {
+            std::cout << "\nGoodbye" << std::endl;
+            break;
+        }
         if (command == "ADD") {
             phoneBook.addContact();
         }
@@ -31,7 +35,6 @@ int main() {
             std::cout << "Goodbye!" << std::endl;
             break;
         }
-        // Any other input is ignored
     }
     
     return 0;
