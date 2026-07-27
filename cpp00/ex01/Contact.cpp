@@ -6,7 +6,7 @@
 /*   By: omaimaqaroot <omaimaqaroot@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:16:43 by omaimaqaroo       #+#    #+#             */
-/*   Updated: 2025/12/19 20:49:05 by omaimaqaroo      ###   ########.fr       */
+/*   Updated: 2026/07/27 01:22:16 by omaimaqaroo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Contact::Contact() {
     firstName = " ";
     lastName = " ";
     nickname = " ";
-    phoneNumber = " ";
+    phoneNumber = 0;
     darkestSecret = " ";
 }
 
@@ -35,8 +35,8 @@ void Contact::setNickname(std::string str) {
     nickname = str;
 }
 
-void Contact::setPhoneNumber(std::string str) {
-    phoneNumber = str;
+void Contact::setPhoneNumber(int num) {
+    phoneNumber = num;
 }
 
 void Contact::setDarkestSecret(std::string str) {
@@ -55,7 +55,7 @@ std::string Contact::getNickname() const {
     return nickname;
 }
 
-std::string Contact::getPhoneNumber() const {
+int Contact::getPhoneNumber() const {
     return phoneNumber;
 }
 

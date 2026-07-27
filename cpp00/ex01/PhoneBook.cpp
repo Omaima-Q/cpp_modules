@@ -6,13 +6,15 @@
 /*   By: omaimaqaroot <omaimaqaroot@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:59:34 by omaimaqaroo       #+#    #+#             */
-/*   Updated: 2026/07/26 21:35:07 by omaimaqaroo      ###   ########.fr       */
+/*   Updated: 2026/07/27 00:12:50 by omaimaqaroo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include <iostream>
 #include <iomanip>
+#include <cctype>
+#include <cstdlib>
 
 PhoneBook::PhoneBook() {
     currentIndex = 0;
@@ -84,12 +86,20 @@ void PhoneBook::addContact()
     
     std::cout << "Enter phone number: ";
     std::getline(std::cin, input);
-    if (input.empty()) 
+    if (input.empty())
     {
         std::cout << "Error: Field cannot be empty!" << std::endl;
         return;
     }
-    contacts[currentIndex].setPhoneNumber(input);
+    for (size_t k = 0; k < input.length(); k++)
+    {
+        if (!std::isdigit(static_cast<unsigned char>(input[k])))
+        {
+            std::cout << "Error: Phone number must contain digits only!" << std::endl;
+            return;
+        }
+    }
+    contacts[currentIndex].setPhoneNumber(std::atoi(input.c_str()));
     
     std::cout << "Enter darkest secret: ";
     std::getline(std::cin, input);
@@ -126,14 +136,21 @@ void PhoneBook::searchContact()
     int index;
     std::cin >> index;
     
-    if (std::cin.fail()) 
+    if (std::cin.fail())
     {
         std::cin.clear();
+        // Discard up to 10000 leftover characters, stopping early at '\n':
+        // clears the bad input (e.g. "abc") left in the buffer after a
+        // failed >> read, so it doesn't get misread as the next command.
         std::cin.ignore(10000, '\n');
         std::cout << "Invalid input!" << std::endl;
         return;
     }
-    
+
+    // std::cin >> index leaves the trailing '\n' (from pressing Enter) in
+    // the buffer; ignore it (up to 10000 chars, or until '\n', whichever
+    // comes first) so the next std::getline() doesn't read it as an
+    // empty command.
     std::cin.ignore(10000, '\n');
     
     if (index < 0 || index >= totalContacts) 

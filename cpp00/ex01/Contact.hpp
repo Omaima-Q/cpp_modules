@@ -6,7 +6,7 @@
 /*   By: omaimaqaroot <omaimaqaroot@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:22 by omaimaqaroo       #+#    #+#             */
-/*   Updated: 2025/12/19 21:09:50 by omaimaqaroo      ###   ########.fr       */
+/*   Updated: 2026/07/27 01:26:40 by omaimaqaroo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ private:
     std::string firstName;
     std::string lastName;
     std::string nickname;
-    std::string phoneNumber;
+    int phoneNumber;
     std::string darkestSecret;
     
 public:
@@ -31,13 +31,13 @@ public:
     void setFirstName(std::string str);
     void setLastName(std::string str);
     void setNickname(std::string str);
-    void setPhoneNumber(std::string str);
+    void setPhoneNumber(int num);
     void setDarkestSecret(std::string str);
     
     std::string getFirstName() const;
     std::string getLastName() const;
     std::string getNickname() const;
-    std::string getPhoneNumber() const;
+    int getPhoneNumber() const;
     std::string getDarkestSecret() const;
 };
 
