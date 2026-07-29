@@ -14,7 +14,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cctype>
-#include <cstdlib>
+#include <sstream>
 
 PhoneBook::PhoneBook() {
     currentIndex = 0;
@@ -99,7 +99,10 @@ void PhoneBook::addContact()
             return;
         }
     }
-    contacts[currentIndex].setPhoneNumber(std::atoi(input.c_str()));
+    std::istringstream phoneStream(input);
+    int phoneNum;
+    phoneStream >> phoneNum;
+    contacts[currentIndex].setPhoneNumber(phoneNum);
     
     std::cout << "Enter darkest secret: ";
     std::getline(std::cin, input);
@@ -117,10 +120,10 @@ void PhoneBook::addContact()
     currentIndex = (currentIndex + 1) % 8;
     if (totalContacts < 8)
         totalContacts++;
-
     // No-overwrite version: just count up, since currentIndex was already
     // set to totalContacts above and never needs to wrap.
     // totalContacts++;
+    
 }
 
 void PhoneBook::searchContact() 
@@ -133,27 +136,28 @@ void PhoneBook::searchContact()
     displayAllContacts();
     
     std::cout << "Enter index to display: ";
-    int index;
-    std::cin >> index;
-    
-    if (std::cin.fail())
+    std::string indexInput;
+    std::getline(std::cin, indexInput);
+
+    if (indexInput.empty())
     {
-        std::cin.clear();
-        // Discard up to 10000 leftover characters, stopping early at '\n':
-        // clears the bad input (e.g. "abc") left in the buffer after a
-        // failed >> read, so it doesn't get misread as the next command.
-        std::cin.ignore(10000, '\n');
         std::cout << "Invalid input!" << std::endl;
         return;
     }
+    for (size_t k = 0; k < indexInput.length(); k++)
+    {
+        if (!std::isdigit(static_cast<unsigned char>(indexInput[k])))
+        {
+            std::cout << "Invalid input!" << std::endl;
+            return;
+        }
+    }
 
-    // std::cin >> index leaves the trailing '\n' (from pressing Enter) in
-    // the buffer; ignore it (up to 10000 chars, or until '\n', whichever
-    // comes first) so the next std::getline() doesn't read it as an
-    // empty command.
-    std::cin.ignore(10000, '\n');
-    
-    if (index < 0 || index >= totalContacts) 
+    std::istringstream indexStream(indexInput);
+    int index;
+    indexStream >> index;
+
+    if (index < 0 || index >= totalContacts)
     {
         std::cout << "Invalid index!" << std::endl;
         return;
@@ -165,3 +169,4 @@ void PhoneBook::searchContact()
     std::cout << "Phone Number: " << contacts[index].getPhoneNumber() << std::endl;
     std::cout << "Darkest Secret: " << contacts[index].getDarkestSecret() << std::endl;
 }
+
